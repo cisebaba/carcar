@@ -8,6 +8,8 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+
 async function loadInventory() {
   const manufacturersResponse = await fetch('http://localhost:8100/api/manufacturers/');
   const vehicleModelsResponse = await fetch('http://localhost:8100/api/models/');
