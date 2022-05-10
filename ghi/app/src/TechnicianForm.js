@@ -49,7 +49,7 @@ class TechnicianForm extends React.Component {
         <div className="row">
             <div className="offset-3 col-6">
             <div className="shadow p-4 mt-4">
-                <h1>Add Manufacturer!</h1>
+                <h1>Add Technician!</h1>
                 <form onSubmit={this.handleSubmit} id="create-technician-form">
                     <div className="form-floating mb-3">
                         <input onChange={this.handleChangeName} value={this.state.name} placeholder="name" required type="text" name="name" id="name" className="form-control" />
