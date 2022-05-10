@@ -13,11 +13,12 @@ class TechnicianEncoder(ModelEncoder):
     model = Technician
     properties = [ 'name','employee_number']
 
+
 class AppointmentListEncoder(ModelEncoder):
     model = Appointment
-    properties = ['vin_num','owner','date','date','time','reason']
+    properties = ['vin_num','owner','date','time','reason','technician']
     encoders ={
-        "technician": TechnicianEncoder()
+        "technician": TechnicianEncoder(),
     }
 
     def get_extra_data(self,o):
@@ -32,6 +33,8 @@ class AppointmentDetailEncoder(ModelEncoder):
 
     def get_extra_data(self,o):
         return {"technician": o.technician.name}
+
+
 
 @require_http_methods(["GET","POST"])
 def api_list_technician(request):
@@ -57,7 +60,7 @@ def api_list_appointments(request):
     if request.method == "GET":
         appointments = Appointment.objects.all()
         return JsonResponse(
-            appointments,
+            {"appointments": appointments},
             encoder=AppointmentListEncoder,
             safe=False
         )
@@ -70,7 +73,7 @@ def api_list_appointments(request):
             content["technician"] = technician
         except Technician.DoesNotExist:
             return JsonResponse(
-                {"message": "Invalid bin href"},
+                {"message": "Invalid technician href"},
                 status=400,
             )
 
