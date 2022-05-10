@@ -1,9 +1,9 @@
 # CarCar
 
-Team:
+DreamTeam:
 
-* Person 1 - Which microservice?
-* Person 2 - Which microservice?
+* Amanda K.- Sales
+* Cise  - Service
 
 ## Design
 
