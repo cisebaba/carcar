@@ -3,9 +3,10 @@ import React from 'react';
 class ManufacturerForm extends React.Component {
     constructor(props){
         super(props);
-        this.state ={
+        this.state={
             name: '',
         };
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeName = this.handleChangeName.bind(this);
 
     }
@@ -13,6 +14,7 @@ class ManufacturerForm extends React.Component {
     async handleSubmit(event){
         event.preventDefault();
         const data = {...this.state};
+        console.log(data)
 
         const manufacturerUrl = 'http://localhost:8100/api/manufacturers/';
         const fetchConfig = {
@@ -43,11 +45,11 @@ class ManufacturerForm extends React.Component {
             <div className="shadow p-4 mt-4">
                 <h1>Add Manufacturer!</h1>
                 <form onSubmit={this.handleSubmit} id="create-manufacturer-form">
-                <div className="form-floating mb-3">
-                    <input onChange={this.handleChangeName} value={this.state.name} placeholder="name" required type="text" name="name" id="name" className="form-control" />
-                    <label htmlFor="name">Manufacturer</label>
-                </div>
-                <button className="btn btn-primary">Add</button>
+                    <div className="form-floating mb-3">
+                        <input onChange={this.handleChangeName} value={this.state.name} placeholder="name" required type="text" name="name" id="name" className="form-control" />
+                        <label htmlFor="name">Manufacturer</label>
+                    </div>
+                    <button className="btn btn-primary">Add</button>
                 </form>
             </div>
             </div>
