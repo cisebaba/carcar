@@ -16,7 +16,7 @@ class TechnicianEncoder(ModelEncoder):
 
 class AppointmentListEncoder(ModelEncoder):
     model = Appointment
-    properties = ['vin_num','owner','date','time','reason','technician']
+    properties = ["id",'vin_num','owner','date','time','reason','technician']
     encoders ={
         "technician": TechnicianEncoder(),
     }
@@ -92,7 +92,11 @@ def api_show_appointment(request,pk):
             appointment, encoder=AppointmentDetailEncoder, safe=False
         )
     else:
-        request.method == "DELETE"
-        count, _ = Appointment.objects.filter(id=pk).delete()
-        return JsonResponse({"deleted": count > 0})
+        try:
+            request.method == "DELETE"
+            appointment = Appointment.objects.get(id=pk)
+            appointment.delete()
+            return JsonResponse( appointment, encoder=AppointmentDetailEncoder, safe=False,)
+        except Appointment.DoesNotExist:
+            return JsonResponse({"message": "Does not exist"})
     
