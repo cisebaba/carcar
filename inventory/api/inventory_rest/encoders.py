@@ -6,8 +6,8 @@ from .models import Automobile, Manufacturer, VehicleModel
 class ManufacturerEncoder(ModelEncoder):
     model = Manufacturer
     properties = [
+        "id",
         "name",
-        "employee_id",
     ]
 
 
