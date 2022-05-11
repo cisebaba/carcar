@@ -19,7 +19,10 @@ class SalesPerson(models.Model):
 class Customer(models.Model):
     name = models.CharField(max_length=250)
     address = models.TextField()
-    phone_number = models.PositiveSmallIntegerField(unique=True)
+    phone_number = models.CharField(unique=True, max_length=15)
+
+    def __str__(self):
+        return self.name
 
 
 class SalesRecord(models.Model):
