@@ -173,7 +173,8 @@ def api_salesrecords(request):
 
             vin = content["automobile"]
             automobile = AutomobileVO.objects.get(vin=vin)
-            content["automobile"] = automobile
+            content["automobile"] = automobile 
+            content["automobile"].is_sold = True
 
             sale = SalesRecord.objects.create(**content)
             return JsonResponse(
