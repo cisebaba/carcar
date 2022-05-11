@@ -1,26 +1,27 @@
 import React from 'react';
 
 
-class SalesPersonForm extends React.Component {
+class CustomerForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             name: '',
-            employeeId: '',
+            address: '',
+            phoneNumber: '',
         };
         this.handleNameChange = this.handleNameChange.bind(this);
-        this.handleEmployeeIdChange = this.handleEmployeeIdChange.bind(this);
+        this.handleAddressChange = this.handleAddressChange.bind(this);
+        this.handlePhoneNumberChange = this.handlePhoneNumberChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     async handleSubmit(event) {
         event.preventDefault();
         const data = {...this.state};
-        data.employee_id = data.employeeId;
-        delete data.employeeId;
+        data.phone_number = data.phoneNumber;
+        delete data.phoneNumber;
 
-
-        const salespeopleUrl = 'http://localhost:8090/api/salespeople/';
+        const customersUrl = 'http://localhost:8090/api/customers/';
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
@@ -29,12 +30,13 @@ class SalesPersonForm extends React.Component {
             },
         };
 
-        const response = await fetch(salespeopleUrl, fetchConfig);
+        const response = await fetch(customersUrl, fetchConfig);
         
         if (response.ok) {
             const cleared = {
                 name: '',
-                employeeId: '',
+                address: '',
+                phoneNumber: '',
             };
             this.setState(cleared);
         }
@@ -45,9 +47,14 @@ class SalesPersonForm extends React.Component {
         this.setState({name: value});
     }
 
-    handleEmployeeIdChange(event) {
+    handleAddressChange(event) {
         const value = event.target.value;
-        this.setState({employeeId: value})
+        this.setState({address: value})
+    }
+
+    handlePhoneNumberChange(event) {
+        const value = event.target.value;
+        this.setState({phoneNumber: value})
     }
     
     render() {
@@ -55,19 +62,25 @@ class SalesPersonForm extends React.Component {
             <div className="row">
             <div className="offset-3 col-6">
             <div className="shadow p-4 mt-4">
-                <h1>Add a new sales person</h1>
-                <form onSubmit={this.handleSubmit} id="create-salesperson-form">
+                <h1>Add a potential customer</h1>
+                <form onSubmit={this.handleSubmit} id="create-customer-form">
                 <div className="form-floating mb-3">
                     <input onChange={this.handleNameChange} placeholder="Name" required
                         value={this.state.name} type="text" name="name" id="name"
                         className="form-control" />
                     <label htmlFor="name">Name</label>
                 </div>
+                {/* Update Description part to Address, change Address one to Phone Num */}
+                <div className="mb-3">
+                    <label htmlFor="address" className="form-label">Address</label>
+                    <textarea onChange={this.handleAddressChange} value={this.state.address} className="form-control" 
+                        id="address" name="address" rows="3"></textarea>
+                </div>
                 <div className="form-floating mb-3">
-                    <input  onChange={this.handleEmployeeIdChange} placeholder="Employee ID" required
-                        value={this.state.employeeId} type="number" name="employee_id" id="employee_id"
+                    <input  onChange={this.handlePhoneNumberChange} placeholder="Phone Number" required
+                        value={this.state.phoneNumber} type="text" name="phone_number" id="phone_number"
                         className="form-control" />
-                    <label htmlFor="room_count">Employee ID</label>
+                    <label htmlFor="room_count">Phone</label>
                 </div>
                 <button className="btn btn-primary">Create</button>
                 </form>
@@ -78,4 +91,4 @@ class SalesPersonForm extends React.Component {
   }
 }
 
-export default SalesPersonForm;
+export default CustomerForm;
