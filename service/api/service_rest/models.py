@@ -20,8 +20,10 @@ class Appointment(models.Model):
     owner = models.CharField(max_length=200)
     date = models.DateField(null=True)
     time = models.TimeField(null=True)
-    technician = models.ForeignKey("Technician", on_delete=models.PROTECT)
+    technician = models.ForeignKey("Technician", related_name="technician", on_delete=models.PROTECT)
     reason = models.TextField()
+    is_finished = models.BooleanField(default=False)
+    is_vip = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.owner} {self.vin_num}"

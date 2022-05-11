@@ -11,13 +11,14 @@ class AutomobileVOEncoder(ModelEncoder):
 
 class TechnicianEncoder(ModelEncoder):
     model = Technician
-    properties = [ 'name','employee_number']
+    properties = [ 'id','name','employee_number']
+
 
 class AppointmentListEncoder(ModelEncoder):
     model = Appointment
-    properties = ['vin_num','owner','date','date','time','reason']
+    properties = ["id",'vin_num','owner','date','time','reason','technician','is_vip','is_finished']
     encoders ={
-        "technician": TechnicianEncoder()
+        "technician": TechnicianEncoder(),
     }
 
     def get_extra_data(self,o):
@@ -25,13 +26,15 @@ class AppointmentListEncoder(ModelEncoder):
 
 class AppointmentDetailEncoder(ModelEncoder):
     model = Appointment
-    properties = ['vin_num','owner','date','date','time','reason']
+    properties = ['vin_num','owner','date','is_vip','time','reason','is_finished']
     encoders ={
         "technician": TechnicianEncoder()
     }
 
     def get_extra_data(self,o):
         return {"technician": o.technician.name}
+
+
 
 @require_http_methods(["GET","POST"])
 def api_list_technician(request):
@@ -57,7 +60,7 @@ def api_list_appointments(request):
     if request.method == "GET":
         appointments = Appointment.objects.all()
         return JsonResponse(
-            appointments,
+            {"appointments": appointments},
             encoder=AppointmentListEncoder,
             safe=False
         )
@@ -70,7 +73,7 @@ def api_list_appointments(request):
             content["technician"] = technician
         except Technician.DoesNotExist:
             return JsonResponse(
-                {"message": "Invalid bin href"},
+                {"message": "Invalid technician href"},
                 status=400,
             )
 
@@ -89,7 +92,11 @@ def api_show_appointment(request,pk):
             appointment, encoder=AppointmentDetailEncoder, safe=False
         )
     else:
-        request.method == "DELETE"
-        count, _ = Appointment.objects.filter(id=pk).delete()
-        return JsonResponse({"deleted": count > 0})
+        try:
+            request.method == "DELETE"
+            appointment = Appointment.objects.get(id=pk)
+            appointment.delete()
+            return JsonResponse( appointment, encoder=AppointmentDetailEncoder, safe=False,)
+        except Appointment.DoesNotExist:
+            return JsonResponse({"message": "Does not exist"})
     

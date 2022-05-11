@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ["localhost", "inventory-api"]
 # Application definition
 
 INSTALLED_APPS = [
+    "corsheaders",
     "inventory_rest.apps.InventoryRestConfig",
     'django.contrib.admin',
     'django.contrib.auth',
