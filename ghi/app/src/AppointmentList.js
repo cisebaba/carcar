@@ -35,13 +35,17 @@ class AppointmentList extends React.Component {
     async handleComplete(id){
       const updateURl = `http://localhost:8080/api/appointments/${id}/`;
       const fetchConfig = {
-        method: "PUT"
+        method: "PUT",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({is_finished: true})
       };
       const response = await fetch(updateURl, fetchConfig);
       if(response.ok){
         this.setState({is_finished: true});
       }
-
+      window.location.reload();
     }
     
     render(){
@@ -58,13 +62,19 @@ class AppointmentList extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.appointments.map((appointment) => {
+                {this.state.appointments.map((appointment,i) => {
+                  // console.log(this.state.appointments[i].id)
+                    let isComplete=""
                     if(appointment.is_finished === true){
-                      this.state.appointments.splice(appointment.id,1)
+                      isComplete="d-none"
+                    }
+                    let isVip=""
+                    if(appointment.is_vip===true){
+                      isVip="table-dark"
                     }
                   return(
-                      <tr key={appointment.id}>
-                        <td>{appointment.vin_num}</td>
+                      <tr className={isComplete} key={appointment.id}>
+                        <td className={isVip}>{appointment.vin_num}</td>
                         <td>{appointment.owner}</td>
                         <td>{appointment.date}</td>
                         <td>{appointment.time}</td>

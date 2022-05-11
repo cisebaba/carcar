@@ -66,16 +66,15 @@ def api_list_appointments(request):
         )
     else: #POST
         content = json.loads(request.body)
-        print(content)
-
+        # print(content)
+        technician = Technician.objects.get(id=content["technician"])
+        content["technician"] = technician
         try:
-            technician = Technician.objects.get(id=content["technician"])
-            content["technician"] = technician
-        except Technician.DoesNotExist:
-            return JsonResponse(
-                {"message": "Invalid technician href"},
-                status=400,
-            )
+            vin_new=content["vin_num"]
+            AutomobileVO.objects.get(vin=vin_new)
+            content["is_vip"] = True
+        except AutomobileVO.DoesNotExist:
+            content["is_vip"] = False
 
         appointment = Appointment.objects.create(**content)
         return JsonResponse(

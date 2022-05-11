@@ -16,7 +16,7 @@ class Technician(models.Model):
         return reverse("api_list_technician", kwargs={"pk": self.pk})
 
 class Appointment(models.Model):
-    vin_num = models.CharField(max_length=17, unique=True)
+    vin_num = models.CharField(max_length=17)
     owner = models.CharField(max_length=200)
     date = models.DateField(null=True)
     time = models.TimeField(null=True)
