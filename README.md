@@ -4,8 +4,7 @@ DreamTeam:
 
 * Amanda K.- Sales
 * Cise  - Service
-* Amanda Kiehm - Which microservice? Sales
-* Cise Babatasi - Which microservice? Service
+
 
 ## Design
 
