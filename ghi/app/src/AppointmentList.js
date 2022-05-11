@@ -87,6 +87,7 @@ class AppointmentList extends React.Component {
                       </tr>
                   );
                 })}
+                <p>*VIP customers are highlighted.</p>
               </tbody>
             </table>
         )

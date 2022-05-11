@@ -12,7 +12,7 @@ import CustomerForm from './CustomerForm';
 import TechnicianForm from './TechnicianForm';
 import AppointmentForm from './AppointmentForm';
 import AppointmentList from './AppointmentList';
-
+import VinHistory from './VinHistory';
 
 function App(props) {
   return (
@@ -34,6 +34,8 @@ function App(props) {
           <Route path='technicians/new' element={<TechnicianForm/>}/>
           <Route path='appointments' element={<AppointmentList appointments={props.appointments}/>}/>
           <Route path='appointments/new' element={<AppointmentForm/>}/>
+          <Route path='search' element={<VinHistory appointments={props.appointments}/>}/>
+          
         </Routes>
       </div>
     </BrowserRouter>

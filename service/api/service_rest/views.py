@@ -75,7 +75,7 @@ def api_list_appointments(request):
             content["is_vip"] = True
         except AutomobileVO.DoesNotExist:
             content["is_vip"] = False
-
+        
         appointment = Appointment.objects.create(**content)
         return JsonResponse(
           appointment,
@@ -100,7 +100,7 @@ def api_show_appointment(request,pk):
             return JsonResponse({"message": "Does not exist"})
     else:
         content = json.loads(request.body)
-        print(content)
+        # print(content)
         appointment = Appointment.objects.get(id=pk)
 
         Appointment.objects.filter(id=pk).update(**content)
