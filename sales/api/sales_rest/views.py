@@ -1,12 +1,23 @@
+import re
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 import json
 
 from .models import SalesPerson, Customer, SalesRecord, AutomobileVO
-from .encoders import SalesPersonEncoder, CustomerEncoder, SalesRecordEncoder
+from .encoders import AutomobileVOEncoder, SalesPersonEncoder, CustomerEncoder, SalesRecordEncoder
 
 # Create your views here.
+
+@require_http_methods(["GET"])
+def api_automobile_vos(request):
+    if request.method == "GET":
+        automobiles = AutomobileVO.objects.filter(is_sold=False)
+        return JsonResponse(
+            {"automobiles": automobiles},
+            encoder=AutomobileVOEncoder,
+        )
+
 
 @require_http_methods(["GET", "POST"])
 def api_salespeople(request):
@@ -162,6 +173,7 @@ def api_salesrecords(request):
     else:
         try:
             content = json.loads(request.body)
+            print("content: ", content)
 
             employee_id = content["salesperson"]
             salesperson = SalesPerson.objects.get(pk=employee_id)
@@ -171,11 +183,20 @@ def api_salesrecords(request):
             customer = Customer.objects.get(pk=customer_id)
             content["customer"] = customer
 
-            vin = content["automobile"]
-            automobile = AutomobileVO.objects.get(vin=vin)
-            content["automobile"] = automobile 
-            content["automobile"].is_sold = True
+            try:
+                vin = content["automobile"]
+                automobile = AutomobileVO.objects.get(vin=vin)
+                content["automobile"] = automobile 
+                content["automobile"].is_sold = True
+                content["automobile"].save()
 
+            except AutomobileVO.DoesNotExist:
+                response = JsonResponse(
+                    {"message": "AutomobileVO does not exist"}
+                )
+                response.status_code = 400
+                return response   
+                  
             sale = SalesRecord.objects.create(**content)
             return JsonResponse(
                 sale,
