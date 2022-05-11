@@ -31,6 +31,7 @@ class CustomerEncoder(ModelEncoder):
 class SalesRecordEncoder(ModelEncoder):
     model = SalesRecord
     properties = [
+        "id",
         "price",
         "salesperson",
         "customer",

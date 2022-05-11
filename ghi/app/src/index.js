@@ -16,18 +16,21 @@ async function loadInventory() {
   const automobilesResponse = await fetch('http://localhost:8100/api/automobiles/');
   const technicianResponse = await fetch('http://localhost:8080/api/technicians/');
   const appointmentResponse = await fetch('http://localhost:8080/api/appointments/');
+  const salesrecordsResponse = await fetch('http://localhost:8090/api/salesrecords/');
   
-  if (manufacturersResponse.ok && vehicleModelsResponse.ok && automobilesResponse.ok && technicianResponse.ok && appointmentResponse.ok) {
+  if (manufacturersResponse.ok && vehicleModelsResponse.ok && automobilesResponse.ok && technicianResponse.ok && appointmentResponse.ok && salesrecordsResponse.ok) {
     const manufacturersData = await manufacturersResponse.json();
     const vehicleModelsData = await vehicleModelsResponse.json();
     const automobilesData = await automobilesResponse.json();
     const technicianData = await technicianResponse.json();
     const appointmentData = await appointmentResponse.json();
+    const salesrecordsData = await salesrecordsResponse.json();
   
     root.render(
       <React.StrictMode>
         <App manufacturers={manufacturersData.manufacturers} 
           models={vehicleModelsData.models}
+          salesrecords={salesrecordsData.sales}
           automobiles={automobilesData.autos} technicians={technicianData.technicians} appointments={appointmentData.appointments}/>
       </React.StrictMode>
     );
@@ -37,7 +40,7 @@ async function loadInventory() {
     console.error("automobilesResponse", automobilesResponse);
     console.error("techniciansResponse", technicianResponse);
     console.error("appointmentResponse", appointmentResponse);
-
+    console.error("salesrecordsResponse", salesrecordsResponse);
   }
 }
 loadInventory();

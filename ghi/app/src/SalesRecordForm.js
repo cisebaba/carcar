@@ -69,7 +69,6 @@ class SalesRecordForm extends React.Component {
         this.setState({price: value})
     }
 
-    // On this part
     async componentDidMount() {
         const automobileUrl = 'http://localhost:8090/api/automobiles/';
         const autoResponse = await fetch(automobileUrl);

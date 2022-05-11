@@ -209,3 +209,49 @@ def api_salesrecords(request):
             )
             response.status_code = 400
             return response
+
+
+@require_http_methods(["DELETE", "GET", "PUT"])
+def api_salesrecord(request, pk):
+    if request.method == "GET":
+        try:
+            customer = SalesRecord.objects.get(id=pk)
+            return JsonResponse(
+                customer,
+                encoder=SalesRecordEncoder,
+                safe=False
+            )
+        except SalesRecord.DoesNotExist:
+            response = JsonResponse({"message": "Does not exist"})
+            response.status_code = 404
+            return response
+    elif request.method == "DELETE":
+        try:
+            sale = SalesRecord.objects.get(id=pk)
+            sale.delete()
+            return JsonResponse(
+                sale,
+                encoder=SalesRecordEncoder,
+                safe=False,
+            )
+        except SalesRecord.DoesNotExist:
+            return JsonResponse({"message": "Does not exist"})
+    else:
+        try:
+            content = json.loads(request.body)
+            sale = SalesRecord.objects.get(id=pk)
+
+            props = ["automobile", "salesperson", "customer", "price"]
+            for prop in props:
+                if prop in content:
+                    setattr(sale, prop, content[prop])
+            sale.save()
+            return JsonResponse(
+                sale,
+                encoder=SalesRecordEncoder,
+                safe=False,
+            )
+        except SalesRecord.DoesNotExist:
+            response = JsonResponse({"message": "Does not exist"})
+            response.status_code = 404
+            return response
