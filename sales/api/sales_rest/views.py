@@ -2,10 +2,9 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 import json
-from common.json import ModelEncoder
 
 from .models import SalesPerson, Customer, SalesRecord, AutomobileVO
-from .encoders import SalesPersonEncoder, CustomerEncoder
+from .encoders import SalesPersonEncoder, CustomerEncoder, SalesRecordEncoder
 
 # Create your views here.
 
@@ -150,3 +149,45 @@ def api_customer(request, pk):
             response = JsonResponse({"message": "Does not exist"})
             response.status_code = 404
             return response
+
+
+@require_http_methods(["GET", "POST"])
+def api_salesrecords(request):
+    if request.method == "GET":
+        sales = SalesRecord.objects.all()
+        return JsonResponse(
+            {"sales": sales},
+            encoder=SalesRecordEncoder,
+        )
+    # else:
+    #     try:
+    #         content = json.loads(request.body)
+    #         print("content: ", content)
+    #         #
+    #         employee_id = content["salesperson"]
+    #         salesperson = SalesPerson.objects.get(pk=employee_id)
+    #         content["salesperson"] = salesperson
+
+    #         customer_id = content["customer"]
+    #         customer = Customer.objects.get(pk=customer_id)
+    #         print("customer", customer)
+    #         content["customer"] = customer
+
+    #         vin = content["automobile"]
+    #         # Issue with line below - figure out why automobile is not printing
+    #         automobile = AutomobileVO.objects.get(pk=id)
+    #         print("automobile: ", automobile)
+    #         content["automobile"] = automobile
+
+    #         sale = SalesRecord.objects.create(**content)
+    #         return JsonResponse(
+    #             sale,
+    #             encoder=SalesRecordEncoder,
+    #             safe=False,
+    #         )
+    #     except:
+    #         response = JsonResponse(
+    #             {"message": "Could not create the sales record"}
+    #         )
+    #         response.status_code = 400
+    #         return response

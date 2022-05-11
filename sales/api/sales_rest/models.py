@@ -28,9 +28,9 @@ class Customer(models.Model):
 class SalesRecord(models.Model):
     price = models.PositiveIntegerField()
 
-    sales_person = models.ForeignKey(
+    salesperson = models.ForeignKey(
         SalesPerson,
-        related_name="sales",
+        related_name="salesperson",
         on_delete=models.CASCADE,
     )
 
