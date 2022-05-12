@@ -7,12 +7,14 @@ import ModelsList from './pages/ModelsList';
 import AutomobileList from './pages/AutomobileList';
 import ModelForm from './pages/ModelForm';
 import AutomobileForm from './pages/AutomobileForm';
-import SalesPersonForm from './SalesPersonForm';
+import SalesPersonForm from './pages/salesPages/SalesPersonForm';
 import CustomerForm from './CustomerForm';
 import TechnicianForm from './pages/servicePages/TechnicianForm';
 import AppointmentForm from './pages/servicePages/AppointmentForm';
 import AppointmentList from './pages/servicePages/AppointmentList';
 import VinHistory from './pages/servicePages/VinHistory';
+import SalesRecordList from './pages/salesPages/SalesRecordList';
+import SalesRecordForm from './pages/salesPages/SalesRecordForm';
 
 function App(props) {
   return (
