@@ -23,7 +23,6 @@ def poll():
             for auto in content["autos"]:
                 AutomobileVO.objects.update_or_create(
                     vin=auto["vin"],
-                    #defaults={"is_sold": False},
                 )
             pass
         except Exception as e:

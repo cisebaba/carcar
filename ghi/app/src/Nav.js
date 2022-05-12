@@ -36,6 +36,9 @@ function Nav() {
               <ul className="dropdown-menu">
                 <li><NavLink className="dropdown-item" to="/salespeople" role="button">Add a Sales Person</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/customers" role="button">Add a potential customer</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/salesrecords" role="button">View all sales</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/salesrecords/new" role="button">Create a sale record</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/salehistory" role="button">View Sale History</NavLink></li>
               </ul>
             </li>
             <li className="nav-item dropdown">
@@ -46,9 +49,8 @@ function Nav() {
                 <li><NavLink className="dropdown-item" to="appointments" role="button">Appointments</NavLink></li>
               </ul>
             </li>
-            
-            <li className="nav-item">
-              <NavLink className="nav-link" to="search">Search by VIN</NavLink>
+            <li className='nav-item'>
+              <NavLink className='nav-link' to='search'>Search by VIN</NavLink>
             </li>
           </ul>
         </div>

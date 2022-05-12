@@ -8,13 +8,14 @@ import AutomobileList from './pages/AutomobileList';
 import ModelForm from './pages/ModelForm';
 import AutomobileForm from './pages/AutomobileForm';
 import SalesPersonForm from './pages/salesPages/SalesPersonForm';
-import CustomerForm from './CustomerForm';
+import CustomerForm from './pages/salesPages/CustomerForm';
 import TechnicianForm from './pages/servicePages/TechnicianForm';
 import AppointmentForm from './pages/servicePages/AppointmentForm';
 import AppointmentList from './pages/servicePages/AppointmentList';
 import VinHistory from './pages/servicePages/VinHistory';
 import SalesRecordList from './pages/salesPages/SalesRecordList';
 import SalesRecordForm from './pages/salesPages/SalesRecordForm';
+import SaleHistory from './pages/salesPages/SaleHistory';
 
 function App(props) {
   return (
@@ -35,6 +36,7 @@ function App(props) {
           <Route path='customers' element={<CustomerForm/>}/>
           <Route path='salesrecords' element={<SalesRecordList salesrecords={props.salesrecords}/>}/>
           <Route path='salesrecords/new' element={<SalesRecordForm/>}/>
+          <Route path='salehistory' element={<SaleHistory salesrecords={props.salesrecords}/>}/>
           <Route path='technicians/new' element={<TechnicianForm/>}/>
           <Route path='appointments' element={<AppointmentList appointments={props.appointments}/>}/>
           <Route path='appointments/new' element={<AppointmentForm/>}/>

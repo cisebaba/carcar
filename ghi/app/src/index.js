@@ -5,7 +5,6 @@ import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
-
 async function loadInventory() {
   let manufacturersData, vehicleModelsData, automobilesData,technicianData, appointmentData, salesrecordsData;
   const manufacturersResponse = await fetch('http://localhost:8100/api/manufacturers/');
