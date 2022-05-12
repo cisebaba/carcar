@@ -40,7 +40,7 @@ class AppointmentDetailEncoder(ModelEncoder):
 def api_list_technician(request):
     if request.method == "GET":
         technicians = Technician.objects.all()
-        print(technicians)
+        # print(technicians)
         return JsonResponse(
             {"technicians":technicians},
             encoder=TechnicianEncoder,

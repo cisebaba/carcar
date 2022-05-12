@@ -1,21 +1,21 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
-import ManufacturerList from './ManufacturerList';
-import ManufacturerForm from './ManufacturerForm';
-import ModelsList from './ModelsList';
-import AutomobileList from './AutomobileList';
-import ModelForm from './ModelForm';
-import AutomobileForm from './AutomobileForm';
-import SalesPersonForm from './SalesPersonForm';
-import CustomerForm from './CustomerForm';
-import TechnicianForm from './TechnicianForm';
-import AppointmentForm from './AppointmentForm';
-import AppointmentList from './AppointmentList';
-import SalesRecordForm from './SalesRecordForm';
-import SalesRecordList from './SalesRecordList';
-import VinHistory from './VinHistory';
-import SaleHistory from './SaleHistory';
+import ManufacturerList from './pages/ManufacturerList';
+import ManufacturerForm from './pages/ManufacturerForm';
+import ModelsList from './pages/ModelsList';
+import AutomobileList from './pages/AutomobileList';
+import ModelForm from './pages/ModelForm';
+import AutomobileForm from './pages/AutomobileForm';
+import SalesPersonForm from './pages/salesPages/SalesPersonForm';
+import CustomerForm from './pages/salesPages/CustomerForm';
+import TechnicianForm from './pages/servicePages/TechnicianForm';
+import AppointmentForm from './pages/servicePages/AppointmentForm';
+import AppointmentList from './pages/servicePages/AppointmentList';
+import VinHistory from './pages/servicePages/VinHistory';
+import SalesRecordList from './pages/salesPages/SalesRecordList';
+import SalesRecordForm from './pages/salesPages/SalesRecordForm';
+import SaleHistory from './pages/salesPages/SaleHistory';
 
 function App(props) {
   return (

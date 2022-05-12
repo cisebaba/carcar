@@ -50,7 +50,7 @@ class AppointmentList extends React.Component {
     
     render(){
         return (
-            <table className='table table-striped'>
+            <table className='table table-striped mt-5'>
               <thead>
                 <tr>
                   <th>VIN</th>

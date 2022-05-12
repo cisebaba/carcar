@@ -10,50 +10,47 @@ function Nav() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <NavLink className="nav-link" to="manufacturers">Manufacturer List</NavLink>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Manufacturer</a>
+              <ul className="dropdown-menu">
+                <li><NavLink className="dropdown-item" to="manufacturers" role="button">Manufacturer List</NavLink></li>
+                <li><NavLink className="dropdown-item" to="manufacturers/new" role="button">Add a Manufacturer</NavLink></li>
+              </ul>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="manufacturers/new">Manufacturer Form</NavLink>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Vehicle</a>
+              <ul className="dropdown-menu">
+                <li><NavLink className="dropdown-item" to="/models" role="button">Vehicle Models List</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/models/new" role="button">Add a Vehicle Model</NavLink></li>
+              </ul>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/models">Vehicle Models List</NavLink>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Autos</a>
+              <ul className="dropdown-menu">
+                <li><NavLink className="dropdown-item" to="automobiles" role="button">Automobiles List</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/automobiles/new" role="button">Add an Auto</NavLink></li>
+              </ul>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/models/new">Vehicle Model Form</NavLink>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Sales</a>
+              <ul className="dropdown-menu">
+                <li><NavLink className="dropdown-item" to="/salespeople" role="button">Add a Sales Person</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/customers" role="button">Add a potential customer</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/salesrecords" role="button">View all sales</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/salesrecords/new" role="button">Create a sale record</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/salehistory" role="button">View Sale History</NavLink></li>
+              </ul>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="automobiles">Automobiles List</NavLink>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Service</a>
+              <ul className="dropdown-menu">
+                <li><NavLink className="dropdown-item" to="technicians/new" role="button">Add a Technician</NavLink></li>
+                <li><NavLink className="dropdown-item" to="appointments/new" role="button">Add an Appointment</NavLink></li>
+                <li><NavLink className="dropdown-item" to="appointments" role="button">Appointments</NavLink></li>
+              </ul>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/automobiles/new">Automobile Form</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/salespeople">Add a sales person</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/customers">Add a potential customer</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/salesrecords">Sales Records List</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/salesrecords/new">Create a sale record</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/salehistory">View Sale History</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="technicians/new">Add a Technician</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="appointments/new">Add an Appointment</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="appointments">Appointments</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="search">Search</NavLink>
+            <li className='nav-item'>
+              <NavLink className='nav-link' to='search'>Search by VIN</NavLink>
             </li>
           </ul>
         </div>
