@@ -20,11 +20,10 @@ def poll():
             # Write your polling logic, here
             response = requests.get("http://inventory-api:8000/api/automobiles/")
             content = json.loads(response.content)
-            print("content", content)
             for auto in content["autos"]:
                 AutomobileVO.objects.update_or_create(
                     vin=auto["vin"],
-                    defaults={"is_sold": False},
+                    #defaults={"is_sold": False},
                 )
             pass
         except Exception as e:
