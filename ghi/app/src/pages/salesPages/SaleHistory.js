@@ -18,20 +18,17 @@ class SaleHistory extends React.Component{
             const data = await response.json();
             this.setState({salespeople: data.salespeople})
         }
+        const saleUrl = 'http://localhost:8090/api/salesrecords/';
+        const saleResponse = await fetch(saleUrl);
+        if (saleResponse.ok) {
+            const saleData = await saleResponse.json();
+            this.setState({salesrecords: saleData.sales})
+        }
     }
 
     async handleSalesPersonChange(event){
         const value = event.target.value;
         this.setState({ salesperson: value })
-
-        const saleUrl = 'http://localhost:8090/api/salesrecords/';
-        const response = await fetch(saleUrl);
-        if (response.ok) {
-            const saleData = await response.json();
-            console.log("saleData, ", saleData);
-            this.setState({salesrecords: saleData.sales})
-        }
-        
     }
     
     render() {
@@ -48,38 +45,41 @@ class SaleHistory extends React.Component{
                                     {salesperson.name}
                                 </option>
                             );
-
                     })}
                     </select>
+                    <div>
+                        <table className='table table-striped'>
+                        <thead>
+                            <tr>
+                            <th>Sales Person</th>
+                            <th>Customer</th>
+                            <th>VIN</th>
+                            <th>Sale Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {this.state.salesrecords
+                            .filter((sale) => (sale.salesperson.employee_id == this.state.salesperson))
+                            .map(sale => 
+                                    (
+                                    <tr key={sale.id} value={sale.id}>
+                                        <td>{ sale.salesperson.name }</td>
+                                        <td>{ sale.customer.name }</td>
+                                        <td>{ sale.automobile.vin }</td>
+                                        <td>{ sale.price }</td>
+                                    </tr>
+                                    )
+                            )
+                            }
+                        </tbody>
+                        </table>
+                    </div>
                 </div>
-                
-                <table className='table table-striped'>
-                <thead>
-                    <tr>
-                    <th>Sales Person</th>
-                    <th>Customer</th>
-                    <th>VIN</th>
-                    <th>Sale Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {this.state.salesrecords.map(sale => {
-                    //sale.salesperson == this.state.salesperson;
-                        return (
-                        <tr key={sale.id}>
-                            <td>{ sale.salesperson.name }</td>
-                            <td>{ sale.customer.name }</td>
-                            <td>{ sale.automobile.vin }</td>
-                            <td>{ sale.price }</td>
-                        </tr>
-                        )
-                    
-                })}
-                </tbody>
-                </table>
             </div>
 
         );
     }
 }
 export default SaleHistory;
+
+
