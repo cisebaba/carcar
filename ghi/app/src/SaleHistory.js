@@ -43,11 +43,12 @@ class SaleHistory extends React.Component{
                         value={this.state.salesperson} id="salesperson" className="form-select">
                     <option value="">Choose a Sales Person</option>
                     {this.state.salespeople.map(salesperson => {
-                        return (
-                            <option key={salesperson.employee_id} value={salesperson.employee_id}>
-                                {salesperson.name}
-                            </option>
-                        );
+                            return (
+                                <option key={salesperson.employee_id} value={salesperson.employee_id}>
+                                    {salesperson.name}
+                                </option>
+                            );
+
                     })}
                     </select>
                 </div>
@@ -63,14 +64,16 @@ class SaleHistory extends React.Component{
                 </thead>
                 <tbody>
                 {this.state.salesrecords.map(sale => {
-                    return (
-                    <tr key={sale.id}>
-                        <td>{ sale.salesperson.name }</td>
-                        <td>{ sale.customer.name }</td>
-                        <td>{ sale.automobile.vin }</td>
-                        <td>{ sale.price }</td>
-                    </tr>
-                    )
+                    //sale.salesperson == this.state.salesperson;
+                        return (
+                        <tr key={sale.id}>
+                            <td>{ sale.salesperson.name }</td>
+                            <td>{ sale.customer.name }</td>
+                            <td>{ sale.automobile.vin }</td>
+                            <td>{ sale.price }</td>
+                        </tr>
+                        )
+                    
                 })}
                 </tbody>
                 </table>
