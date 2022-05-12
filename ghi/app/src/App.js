@@ -15,6 +15,7 @@ import AppointmentList from './AppointmentList';
 import SalesRecordForm from './SalesRecordForm';
 import SalesRecordList from './SalesRecordList';
 import VinHistory from './VinHistory';
+import SaleHistory from './SaleHistory';
 
 function App(props) {
   return (
@@ -35,6 +36,7 @@ function App(props) {
           <Route path='customers' element={<CustomerForm/>}/>
           <Route path='salesrecords' element={<SalesRecordList salesrecords={props.salesrecords}/>}/>
           <Route path='salesrecords/new' element={<SalesRecordForm/>}/>
+          <Route path='salehistory' element={<SaleHistory salesrecords={props.salesrecords}/>}/>
           <Route path='technicians/new' element={<TechnicianForm/>}/>
           <Route path='appointments' element={<AppointmentList appointments={props.appointments}/>}/>
           <Route path='appointments/new' element={<AppointmentForm/>}/>

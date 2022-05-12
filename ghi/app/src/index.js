@@ -9,7 +9,6 @@ root.render(
   </React.StrictMode>
 );
 
-
 async function loadInventory() {
   const manufacturersResponse = await fetch('http://localhost:8100/api/manufacturers/');
   const vehicleModelsResponse = await fetch('http://localhost:8100/api/models/');
@@ -31,7 +30,9 @@ async function loadInventory() {
         <App manufacturers={manufacturersData.manufacturers} 
           models={vehicleModelsData.models}
           salesrecords={salesrecordsData.sales}
-          automobiles={automobilesData.autos} technicians={technicianData.technicians} appointments={appointmentData.appointments}/>
+          automobiles={automobilesData.autos} 
+          technicians={technicianData.technicians} appointments={appointmentData.appointments}
+          />
       </React.StrictMode>
     );
   } else {
