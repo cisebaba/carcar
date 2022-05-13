@@ -46,7 +46,7 @@ def api_salespeople(request):
 def api_salesperson(request, pk):
     if request.method == "GET":
         try:
-            salesperson = SalesPerson.objects.get(id=pk)
+            salesperson = SalesPerson.objects.get(employee_id=pk)
             return JsonResponse(
                 salesperson,
                 encoder=SalesPersonEncoder,
@@ -58,7 +58,7 @@ def api_salesperson(request, pk):
             return response
     elif request.method == "DELETE":
         try:
-            salesperson = SalesPerson.objects.get(id=pk)
+            salesperson = SalesPerson.objects.get(employee_id=pk)
             salesperson.delete()
             return JsonResponse(
                 salesperson,
@@ -70,7 +70,7 @@ def api_salesperson(request, pk):
     else:
         try:
             content = json.loads(request.body)
-            salesperson = SalesPerson.objects.get(id=pk)
+            salesperson = SalesPerson.objects.get(employee_id=pk)
 
             props = ["employee_id"]
             for prop in props:
@@ -171,15 +171,16 @@ def api_salesrecords(request):
     else:
         try:
             content = json.loads(request.body)
-            print("content: ", content)
 
             employee_id = content["salesperson"]
-            salesperson = SalesPerson.objects.get(pk=employee_id)
+            salesperson = SalesPerson.objects.get(employee_id=employee_id)
             content["salesperson"] = salesperson
+            print("salesperson: ", content["salesperson"])
 
             customer_id = content["customer"]
             customer = Customer.objects.get(pk=customer_id)
             content["customer"] = customer
+            print("customer: ", content["customer"])
 
             try:
                 vin = content["automobile"]
