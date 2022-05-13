@@ -1,4 +1,22 @@
-function ModelsList(props) {
+import React from 'react';
+
+class ModelsList extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+        models: []
+    };
+  };
+
+  async componentDidMount() {
+    const modelsURL = "http://localhost:8100/api/models/";
+    const response = await fetch(modelsURL);
+    if (response.ok) {
+        const data = await response.json();
+        this.setState({ models: data.models})
+    }
+  }
+  render(){
     return (
         <table className="table table-striped mt-5">
         <thead>
@@ -9,7 +27,7 @@ function ModelsList(props) {
           </tr>
         </thead>
         <tbody>
-          {props.models.map(model => {
+          {this.state.models.map(model => {
             return (
               <tr key={model.href}>
                 <td>{ model.name }</td>
@@ -21,6 +39,7 @@ function ModelsList(props) {
         </tbody>
       </table>
     );
+  }
 }
 
 export default ModelsList;

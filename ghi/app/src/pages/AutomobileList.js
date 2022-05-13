@@ -1,4 +1,22 @@
-function AutomobileList(props){
+import React from 'react';
+
+class AutomobileList extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      automobiles: []
+    };
+  };
+
+  async componentDidMount() {
+    const automobilesURL = "http://localhost:8100/api/automobiles/";
+    const response = await fetch(automobilesURL);
+    if (response.ok) {
+        const data = await response.json();
+        this.setState({ automobiles: data.autos})
+    }
+  }
+  render (){
     return (
         <table className='table table-striped mt-5'>
           <thead>
@@ -11,7 +29,7 @@ function AutomobileList(props){
             </tr>
           </thead>
           <tbody>
-            {props.automobiles.map(automobile => {
+            {this.state.automobiles.map(automobile => {
               return(
                   <tr key={automobile.id}>
                     <td>{automobile.vin}</td>
@@ -25,5 +43,6 @@ function AutomobileList(props){
           </tbody>
         </table>
     )
+  }
 }
 export default AutomobileList;
