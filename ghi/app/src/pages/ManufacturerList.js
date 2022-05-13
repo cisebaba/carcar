@@ -13,8 +13,6 @@ class ManufacturerList extends React.Component {
     const response = await fetch(manufacturerurl);
     if (response.ok) {
         const data = await response.json();
-        console.log(data)
-
         this.setState({ manufacturers: data.manufacturers})
     }
   }

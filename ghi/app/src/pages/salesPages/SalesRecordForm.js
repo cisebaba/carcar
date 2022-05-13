@@ -37,7 +37,6 @@ class SalesRecordForm extends React.Component {
         };
 
         const response = await fetch(salesUrl, fetchConfig);
-        
         if (response.ok) {
             const cleared = {
                 automobile: '',
