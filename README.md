@@ -42,7 +42,6 @@ Last, I created list views with React to display all of the Sales Records overal
 
 ## For setup
 
-Install Docker
 
 
 Create docker volume: \
