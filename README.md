@@ -38,3 +38,21 @@ The Sales microservice poller polls the inventory for automobile data via the au
 New Sales People and Customer instances are added to the database upon submission of the "Add a sales person" and "Add a potential customer" forms, respectively. This Sales Person and Customer data populates the form to create a new Sale Record, in addition to the automobile. 
 
 Last, I created list views with React to display all of the Sales Records overall, and for sales records associated to a specific Sales Person, based on their unique employee ID. 
+
+
+## For setup
+
+Install Docker
+
+
+Create docker volume: \
+`docker volume create beta-data`
+
+Docker compose build: \
+`docker compose build` 
+
+Run the container: \
+`docker compose up`
+
+Access in browser:\
+`http://localhost:3000`
