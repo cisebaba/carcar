@@ -39,6 +39,16 @@ New Sales People and Customer instances are added to the database upon submissio
 
 Last, I created list views with React to display all of the Sales Records overall, and for sales records associated to a specific Sales Person, based on their unique employee ID. 
 
+## Overview 
+<div align="center"><br />
+    <h3 align="center">Landing Page and Search VIN Page</h3>
+  <img src="landing_page.png" alt="homepage" width='40%'/>
+  <img src="search_vin.png" alt="search" width='40%'/><br />
+  <h3 align="center">Create Appointment Form and Appointments List</h3>
+  <img src="appointment_form.png" alt="form" width='40%'/>
+    <img src="appointments.png" alt="appointments" width='40%'/><br />
+  
+</div>
 
 ## For setup
 
