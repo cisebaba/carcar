@@ -1,4 +1,4 @@
-# CarCar
+<h1 align="center">CarCar - Dealership and Service Platform 🏎</h1>
 
 DreamTeam:
 
